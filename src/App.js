@@ -21,7 +21,7 @@ const  App = () => {
 
   return (
     <>
-      <h1>Change</h1>
+      <h1>Change Me</h1>
       {renderConfig()}
     </>
   );
