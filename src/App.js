@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
-function App() {
+const  App = () => {
+
+  const [config, setConfig] = useState({})
+
+  const renderConfig = () => {
+    if (config) {
+      return <>
+        <h1>{config.environment}</h1>
+      </>
+    }
+  }
+
+  useEffect(() => {
+    fetch('/api/config')
+      .then(response => response.json())
+      .then(data => setConfig(data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload. Z1 {process.env.TEST}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {renderConfig()}
+    </>
   );
 }
 
