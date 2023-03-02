@@ -3,6 +3,8 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
+      - dev
+      - stage
       - main
   pull_request:
     types: [opened, synchronize, reopened, closed]
@@ -22,6 +24,7 @@ jobs:
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
+          production_branch: main
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_MANGO_FLOWER_0F5741303 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
